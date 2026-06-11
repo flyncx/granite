@@ -1,13 +1,10 @@
-import ReactDOM from "react-dom/client"
-import { MarkdownRenderChild } from "obsidian";
-import { StrictMode } from "react";
-import { ErrorBoundary } from "react-error-boundary"
 
-import { styled, StyleSheetManager } from "styled-components"
+import { styled } from "styled-components"
 
 import { parse as parseYaml } from "yaml"
 
 import * as z from "zod";
+import StandardMRCFramework from "./StandardMRCFramework";
 
 const WebEmbedOptions = z.object({
     url: z.string(),
@@ -26,26 +23,8 @@ function WebEmbed(props: { source: string }) {
     } as any}></Iframe>
 }
 
-export class WebEmbedMRC extends MarkdownRenderChild {
-    public source: string;
-    public shadowRoot: ShadowRoot;
-    public root: ReactDOM.Root | null;
+export class WebEmbedMRC extends StandardMRCFramework {
     constructor(containerEl: HTMLElement, source: string) {
-        super(containerEl);
-        this.source = source;
-        this.shadowRoot = this.containerEl.attachShadow({ mode: 'open' });
-        this.root = null;
-    }
-    override onload(): void {
-        this.root = ReactDOM.createRoot(this.shadowRoot);
-        this.root.render(<StrictMode>
-            <StyleSheetManager target={this.shadowRoot}>
-                <ErrorBoundary fallback={<p>Something went fucking wrong! (check console)</p>}>
-                    <WebEmbed source={this.source} />
-                </ErrorBoundary>
-            </StyleSheetManager>
-        </StrictMode>)
-    } override onunload(): void {
-        this.root?.unmount();
+        super(containerEl, <WebEmbed source={source}/>);
     }
 }
