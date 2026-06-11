@@ -1,5 +1,4 @@
 import rolldownBabel from "@rolldown/plugin-babel"
-import { vanillaExtractPlugin } from "@vanilla-extract/rollup-plugin"
 import { defineConfig } from 'tsdown'
 
 export default defineConfig({
@@ -11,13 +10,9 @@ export default defineConfig({
   entry: ['./src/main.tsx'],
   minify: false,
   plugins: [
-    vanillaExtractPlugin({
-      extract: {
-        name: "styles.css",
-      }
-    }),
     rolldownBabel({
       plugins: [
+        
         ['babel-plugin-styled-components', {
           displayName: true,
           pure: true,
