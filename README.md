@@ -26,3 +26,17 @@ type WebEmbedOptions = {
 url: https://google.com
 ```
 ````
+
+## Development/Build
+
+1. Run `pnpm dev` or `pnpm build`.
+2. Make a directory on your vault's `.obsidian/plugins/Granite`
+3. Symlink the `dist` folder
+    ```sh
+    ln -s ~/Documents/source-code/granite/dist ~/MyObsidianVault/.obsidian/plugins/Granite
+    ```
+4. Enable the plugin
+
+
+
+
