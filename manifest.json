@@ -1,6 +1,6 @@
 {
-	"id": "sample-plugin",
-	"name": "Sample Plugin",
+	"id": "com.fahmihidayat.obsidian-plugin.granite",
+	"name": "Granite Plugin",
 	"version": "1.0.0",
 	"minAppVersion": "1.0.0",
 	"description": "Demonstrates some of the capabilities of the Obsidian API.",
