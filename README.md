@@ -2,6 +2,8 @@
 
 Granite is an Obsidian plugin for my vaults, thus not for public use, although you can see the source codes to learn how-to build one yourself. 
 
+`pnpm dlx create-tsdown@latest` is used for scaffolding this project.
+
 Shadow root are used to make sure no CSS are inherited from Obsidian. This means styling through `styles.css` is impossible, so I opted for ol' reliable `styled-components`.
 
 React is used because personal preference.
