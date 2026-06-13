@@ -15,8 +15,7 @@
   },
   "exports": {
     ".": "./dist/main.js",
-    "./package.json": "./package.json",
-    "./assets/styles-B_SY1GJM.css": "./dist/assets/styles-B_SY1GJM.css"
+    "./package.json": "./package.json"
   },
   "files": [
     "Granite-dist"

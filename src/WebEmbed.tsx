@@ -7,8 +7,14 @@ import * as z from "zod";
 import StandardMRCFramework from "./StandardMRCFramework";
 
 const WebEmbedOptions = z.object({
-    url: z.string(),
-    minHeight: z.string().or(z.number()).default("512px")
+    url: z.url().refine(
+        url => {
+            const u = new URL(url);
+            return ["https:", "http:"].includes(u.protocol);
+        },
+        "Only HTTP(S) URLs allowed"
+    ),
+    minHeight: z.union([z.string(), z.number()]).default("512px")
 });
 
 const Iframe = styled.iframe`
@@ -17,7 +23,8 @@ const Iframe = styled.iframe`
 `
 
 function WebEmbed(props: { source: string }) {
-    const data = WebEmbedOptions.parse(parseYaml(props.source))
+    const obj = parseYaml(props.source)
+    const data = WebEmbedOptions.parse(obj)
     return <Iframe src={data.url} style={{
         '--min-height': typeof data.minHeight === 'number' ? `${data.minHeight}px` : data.minHeight
     } as any}></Iframe>
@@ -25,6 +32,6 @@ function WebEmbed(props: { source: string }) {
 
 export class WebEmbedMRC extends StandardMRCFramework {
     constructor(containerEl: HTMLElement, source: string) {
-        super(containerEl, <WebEmbed source={source}/>);
+        super(containerEl, <WebEmbed source={source} />);
     }
 }
