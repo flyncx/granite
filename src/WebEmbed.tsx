@@ -20,6 +20,7 @@ const WebEmbedOptions = z.object({
 const Iframe = styled.iframe`
     width: 100%;
     min-height: var(--min-height);
+    box-sizing: border-box;
 `
 
 function WebEmbed(props: { source: string }) {
